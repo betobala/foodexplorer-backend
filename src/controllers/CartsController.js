@@ -18,27 +18,28 @@ class CartsController {
   }
 
   async index(request, response) {
-   const  user_id  = request.user.id
+    const user_id = request.user.id
 
     const userCart = await knex("carts").where("user_id", user_id).first()
 
     return response.json(userCart)
   }
 
-  async show(request, response){
+  async show(request, response) {
     const { cart_id } = request.params
 
     const cart_products = await knex("cart_products")
       .select([
         "meals.name",
         "meals.avatar",
+        "cart_products.meal_id",
         "cart_products.price",
         "cart_products.number_of_products",
-        "cart_products.id"
+        "cart_products.id",
       ])
       .where("cart_products.cart_id", cart_id)
       .innerJoin("meals", "meals.id", "cart_products.meal_id")
-      //.orderBy("meals.name")
+    //.orderBy("meals.name")
 
 
     return response.json(cart_products)

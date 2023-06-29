@@ -11,7 +11,6 @@ class CartProductsController{
     .select("number_of_products")
     .first()
 
-
     if(cartProductQuantity){
       const newQuantity = (cartProductQuantity.number_of_products) + number_of_products
 
