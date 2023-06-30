@@ -113,7 +113,7 @@ class mealsController{
       description: description,
       price: price,
       category: category,
-      updated_at: Date.now()
+      updated_at: knex.fn.now()
     })
     
     await knex("ingredients").where({ meal_id }).delete()

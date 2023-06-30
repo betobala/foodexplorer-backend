@@ -27,7 +27,6 @@ class OrdersController {
         await knex("carts").update("total_price", null)
             .where("id", cartId)
     }
-
     async show(request, response) {
         const user_id = request.user.id
 
@@ -40,7 +39,7 @@ class OrdersController {
             ])
             .where("user_id", user_id)
 
-            const userOrdersProducts = await knex("order_products")
+        const userOrdersProducts = await knex("order_products")
             .select([
                 "meals.name",
                 "order_products.number_of_products",
@@ -49,17 +48,58 @@ class OrdersController {
             .whereIn("order_id", userOrdersInformartion.map(order => order.id))
             .innerJoin("meals", "meals.id", "order_products.meal_id")
 
-            const userOrders = userOrdersInformartion.map((order) => ({
-                order_id: order.id,
-                status: order.status,
-                date: order.created_at,
-                products: userOrdersProducts.filter(product => product.order_id === order.id)
-            }))
+        const userOrders = userOrdersInformartion.map((order) => ({
+            order_id: order.id,
+            status: order.status,
+            date: order.created_at,
+            products: userOrdersProducts.filter(product => product.order_id === order.id)
+        }))
 
-
-        console.log(userOrders)
         return response.json(userOrders)
     }
+    async index(request, response) {
+
+        const userOrdersInformartion = await knex("orders")
+            .select([
+                "orders.status",
+                "orders.created_at",
+                "orders.id"
+
+            ])
+
+        const userOrdersProducts = await knex("order_products")
+            .select([
+                "meals.name",
+                "order_products.number_of_products",
+                "order_products.order_id"
+            ])
+            .whereIn("order_id", userOrdersInformartion.map(order => order.id))
+            .innerJoin("meals", "meals.id", "order_products.meal_id")
+
+        const allUsersOrders = userOrdersInformartion.map((order) => ({
+            order_id: order.id,
+            status: order.status,
+            date: order.created_at,
+            products: userOrdersProducts.filter(product => product.order_id === order.id)
+        }))
+
+        return response.json(allUsersOrders)
+    }
+    async update(request, response) {
+        const { order_id } = request.params
+        const { status } = request.body
+
+    
+        await knex("orders")
+            .where("id", order_id)
+            .update({
+                status: status,
+                updated_at: knex.fn.now()
+            })
+
+        return response.json()
+    }
+
 
 }
 
