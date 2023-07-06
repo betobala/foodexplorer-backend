@@ -25,6 +25,15 @@ class SessionsController {
       subject: String(user.id),
       expiresIn
     })
+    const { id } = await knex("carts")
+                            .where("user_id", user.id)
+                            .select("id")
+                            .first()
+                            
+    
+    user.cart_id = id
+                            
+    
 
     return response.json({ user, token })
   }
