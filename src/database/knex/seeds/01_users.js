@@ -1,5 +1,5 @@
 const bcrpyt = require("bcryptjs")
-const password = "admin123"
+const password = process.env.ADMIN_PASSWORD
 const hash = bcrpyt.hashSync(password, 8)
 
 exports.seed = async function(knex) {
@@ -7,8 +7,8 @@ exports.seed = async function(knex) {
   await knex('users').del()
   await knex('users').insert([
     {id: 1,
-     name: "Humberto Abreu",
-     email: "admin@email.com",
+     name: process.env.ADMIN_NAME,
+     email: process.env.ADMIN_EMAIL,
      password: hash,
      isAdmin: true
     }
