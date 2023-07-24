@@ -16,7 +16,7 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 $ git clone https://github.com/betobala/foodexplorer-backend.git
 
 # Configure as variáveis de ambiente
-- Na raiz do projeto você irá encontrar um arquivo .env.example, preencha todos os campos e renomeio o arquivo deixando apenas ".env"
+- Na raiz do projeto você irá encontrar um arquivo .env.example, preencha todos os campos e renomeie o arquivo deixando apenas ".env"
 - Não esqueça de preencher todos os campos, a seed o para cadastro da conta admin só vai funcionar com os campos de admin preenchidos.
 
 # Instale as dependências e rode as migrations/seeds
