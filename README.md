@@ -29,3 +29,6 @@ $ npm run dev
 
 # O servidor inciará na porta:3333 por padrão - acesse <http://localhost:3333>
 ```
+### Observações
+
+Sistema de pagamento não está funcionando, apenas ilustrativo. Para concluir o pedido, basta ir na opção de cartão de crédito e clicar em finalizar pagamento, espere até aparecer pagamento aprovado e o pedido vai ser direcionado para o histórico de pedidos.
