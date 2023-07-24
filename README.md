@@ -15,11 +15,14 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 # Clone este repositório
 $ gh repo clone betobala/foodexplorer-backend
 
-# Instale as dependências
-$ npm install
-
 # Configure as variáveis de ambiente
 - Na raiz do projeto você irá encontrar um arquivo .env.example, preencha todos os campos e renomeio o arquivo deixando apenas ".env"
+- Não esqueça de preencher todos os campos, a seed o para cadastro da conta admin só vai funcionar com os campos de admin preenchidos.
+
+# Instale as dependências e rode as migrations/seeds
+$ npm install
+$ npx knex migrate:latest
+$ npx knex seed:run
 
 # Execute a aplicação em modo de desenvolvimento
 $ npm run dev
