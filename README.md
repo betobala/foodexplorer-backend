@@ -3,10 +3,6 @@
 ## Descrição do Projeto
 <p align="center">API para cadastro de usuários e cardápio.</p>
 
-<h1 align="center">
-    <a href="https://pt-br.reactjs.org/">🔗 React</a>
-</h1>
-
 ### Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
